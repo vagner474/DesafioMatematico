@@ -1,4 +1,4 @@
-package com.exemplo.ufpb.DesafioMatematicoComMaven;
+package com.exemplo.ufpb.DesafioMatematico;
 
 import java.io.Serializable;
 
