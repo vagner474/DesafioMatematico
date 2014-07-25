@@ -13,7 +13,8 @@ public class Jogo implements Serializable {
 	private List<Questao> lista;
 	private Questao ques;
 	private String nome, listQuestaoFinalizada;
-	private int ponto;
+	private float ponto, quantQuestao;
+	private float porcentagemAcertos;
 
 	public Jogo() {
 		this.lista = new ArrayList<Questao>();
@@ -25,6 +26,7 @@ public class Jogo implements Serializable {
 		this.listQuestaoFinalizada = new String();
 		this.finalizouNivel = false;
 		this.respostaCorreta = false;
+		this.porcentagemAcertos = 0;
 	}
 
 	public boolean isAcabou() {
@@ -91,6 +93,10 @@ public class Jogo implements Serializable {
 		}
 		return false;
 	}
+	
+	public float getPorcentagemAcertos(){
+		return this.porcentagemAcertos;
+	}
 
 	public String listResposta() {
 		if (this.finalizouNivel) {
@@ -116,6 +122,10 @@ public class Jogo implements Serializable {
 		return this.nome;
 	}
 
+	public int getQuantQuestao(){
+		return (int)this.quantQuestao;
+	}
+	
 	public Questao escolheQuestao() throws ExcecaoDesafioMatematico {
 		if (this.escolheuNivel && this.criarQuestao) {
 			int pos = (int) ((this.lista.size() - 1) * Math.random());
@@ -163,7 +173,7 @@ public class Jogo implements Serializable {
 	}
 
 	public int getPonto() {
-		return this.ponto;
+		return (int)this.ponto;
 	}
 
 	public List<Questao> getListQuestao() throws ExcecaoDesafioMatematico {

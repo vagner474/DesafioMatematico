@@ -177,6 +177,27 @@ public class FacadeTest {
 				this.jogo.getPonto() == 1);
 	}
 	@Test
+	public void virificaQuestaoCorretaEndPorsentamAcertos() {
+		this.jogo.setNivel(true);
+		this.jogo.criarQuestoes();
+		Questao q = this.jogo.escolheQuestao();
+		this.jogo.verificaResposta(q.getResposta());
+		assertTrue("Esperava se que a porsentagem de acertos fosse diferente de 0", this.jogo.getPorcentagemAcertos() != 0);
+	}
+	@Test
+	public void virificaQuestaoIncorretaEndPorsentamAcertos() {
+		this.verificaQuestaoIncorreta();
+		assertTrue("Esperava se que a porsentagem de acertos fosse igual a 0", this.jogo.getPorcentagemAcertos() == 0);
+	}
+	@Test
+	public void verificaQuestaoIncorreta(){
+		this.criarQuestaoFacilEndEscolheQuestaoFacil();
+		Questao q = this.jogo.escolheQuestao();
+		assertFalse(q.verificaResposta("resposta errada"));
+		this.jogo.verificaResposta("resposta errada");
+		assertTrue("Esperava que a pontuação fosse 0", this.jogo.getPonto() == 0);
+	}
+	@Test
 	public void recebeQuestaoNula() {
 		this.jogo.setNivel(true);
 		this.jogo.criarQuestoes();
