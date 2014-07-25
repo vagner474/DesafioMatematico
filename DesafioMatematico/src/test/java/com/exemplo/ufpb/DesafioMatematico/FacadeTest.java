@@ -3,26 +3,23 @@ import static org.junit.Assert.*;
 import java.io.File;
 import org.junit.*;
 import com.exemplo.ufpb.DesafioMatematico.exececao.ExcecaoDesafioMatematico;
-
 public class FacadeTest {
-
 	private Facade facade;
 	private Jogo jogo;
-
 	@Before
 	public void iniciar() {
 		this.facade = new Facade();
 		this.jogo = this.facade.getJogo();
 	}
 	@After
-	public void terminar() {
+	public void finalizar() {
 		File file = new File("desafioMatematico.txt");
 		if (file.exists()) {
 			file.delete();
 		}
 	}
 	@Test
-	public void criarJogo() {
+	public void criarJogoAcabado() {
 		assertFalse("O jogo iniciou acabado.", this.jogo.isAcabou());
 	}
 	@Test
@@ -32,6 +29,24 @@ public class FacadeTest {
 	@Test(expected = ExcecaoDesafioMatematico.class)
 	public void finalizaJogoAnteDeIniciar() {
 		this.jogo.finaliza();
+	}
+	@Test
+	public void escolheNivelFacilEndVerificaFinaliza(){
+		this.jogo.setNivel(true);
+		assertFalse("Esperava se que finaliza estive se verdadeiro", this.jogo.getFinaliza());
+	}
+	@Test
+	public void escolheNivelDificilEndVerificaFinaliza(){
+		this.jogo.setNivel(false);
+		assertFalse("Esperava se que finaliza estive se verdadeiro", this.jogo.getFinaliza());
+	}
+	@Test
+	public void naoEscolheNivelFacilEndVerificaFinaliza(){
+		assertTrue("O jogo deve iniciar finalizado", this.jogo.getFinaliza());
+	}
+	@Test
+	public void naoEscolheNivelDificilEndVerificaFinaliza(){
+		assertTrue("O jogo deve iniciar finalizado", this.jogo.getFinaliza());
 	}
 	@Test
 	public void informaNome() {
