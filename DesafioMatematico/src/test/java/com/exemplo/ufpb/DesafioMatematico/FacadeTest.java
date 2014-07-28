@@ -27,18 +27,18 @@ public class FacadeTest {
 		assertTrue("O jogo deve iniciar finalizado.", this.jogo.getFinaliza());
 	}
 	@Test(expected = ExcecaoDesafioMatematico.class)
-	public void finalizaJogoAnteDeIniciar() {
+	public void finalizaJogoAntesDeIniciar() {
 		this.jogo.finaliza();
 	}
 	@Test
 	public void escolheNivelFacilEndVerificaFinaliza(){
 		this.jogo.setNivel(true);
-		assertFalse("Esperava se que finaliza estive se verdadeiro", this.jogo.getFinaliza());
+		assertFalse("Esperava-se que finaliza estive se verdadeiro", this.jogo.getFinaliza());
 	}
 	@Test
 	public void escolheNivelDificilEndVerificaFinaliza(){
 		this.jogo.setNivel(false);
-		assertFalse("Esperava se que finaliza estive se verdadeiro", this.jogo.getFinaliza());
+		assertFalse("Esperava-se que finaliza estive se verdadeiro", this.jogo.getFinaliza());
 	}
 	@Test
 	public void naoEscolheNivelFacilEndVerificaFinaliza(){
@@ -58,16 +58,16 @@ public class FacadeTest {
 		assertEquals("null", this.jogo.getNome());
 	}
 	@Test(expected = ExcecaoDesafioMatematico.class)
-	public void enclementaPontuacaoSemEscolheNivel() {
+	public void incrementaPontuacaoSemEscolheNivel() {
 		this.jogo.setPonto();
 	}
 	@Test(expected = ExcecaoDesafioMatematico.class)
-	public void enclementaPontuacaoSemCriarQuestoes() {
+	public void incrementaPontuacaoSemCriarQuestoes() {
 		this.jogo.setNivel(true);
 		this.jogo.setPonto();
 	}
 	@Test(expected = ExcecaoDesafioMatematico.class)
-	public void enclementaPontuacaoSemRespondeQuestao() {
+	public void incrementaPontuacaoSemRespondeQuestao() {
 		this.jogo.setNivel(true);
 		this.jogo.criarQuestoes();
 		this.jogo.escolheQuestao();
@@ -76,14 +76,12 @@ public class FacadeTest {
 	@Test
 	public void escolherNivelFacil() {
 		this.jogo.setNivel(true);
-		assertTrue("Esperava que o jogo utilizasse o nível fácil.",
-				this.jogo.isNivel());
+		assertTrue("Esperava que o jogo utilizasse o nível fácil.",this.jogo.isNivel());
 	}
 	@Test
 	public void escolherNivelDificil() {
 		this.jogo.setNivel(false);
-		assertFalse("Esperava que o jogo utilizasse o nível difícil.",
-				this.jogo.isNivel());
+		assertFalse("Esperava que o jogo utilizasse o nível difícil.",this.jogo.isNivel());
 	}
 	@Test(expected = ExcecaoDesafioMatematico.class)
 	public void criarQuestoesSemNivel() {
@@ -93,13 +91,12 @@ public class FacadeTest {
 	public void criarQuestaoFacilEndEscolheQuestaoFacil(){
 		this.jogo.setNivel(true);
 		this.jogo.criarQuestoes();
-		assertTrue("Esperava que a questão utilizasse o nível fácil.", this.jogo
-				.escolheQuestao().getNivelQuestao());
+		assertTrue("Esperava que a questão utilizasse o nível fácil.", this.jogo.escolheQuestao().getNivelQuestao());
 	@Test
 	public void criarQuestaoDificilEndEscolheQuestaoDificil(){
 		this.jogo.setNivel(false);
 		this.jogo.criarQuestoes();
-		assertFalse("Esperava que a questão utiliza se nivel dificil", this.jogo.escolheQuestao().getNivelQuestao());
+		assertFalse("Esperava que a questão utilizasse nivel dificil", this.jogo.escolheQuestao().getNivelQuestao());
 		}
 	}
 	@Test(expected = ExcecaoDesafioMatematico.class)
@@ -117,8 +114,7 @@ public class FacadeTest {
 		this.jogo.finaliza();
 		this.jogo.setNivel(false);
 		this.jogo.criarQuestoes();
-		assertFalse("Esperava que a questão utilizasse o nível difícil.", this.jogo
-				.escolheQuestao().getNivelQuestao());
+		assertFalse("Esperava que a questão utilizasse o nível difícil.", this.jogo.escolheQuestao().getNivelQuestao());
 	}
 	@Test(expected = ExcecaoDesafioMatematico.class)
 	public void finalizaJogoEndEscolheDeNovoSemEscolheNivel() {
@@ -132,46 +128,42 @@ public class FacadeTest {
 		this.jogo.setNivel(true);
 		this.jogo.finaliza();
 		this.jogo.setNivel(false);
-		assertFalse("Esperava que jogador utilizasse o nível difícil.",
-				this.jogo.isNivel());
+		assertFalse("Esperava que jogador utilizasse o nível difícil.",this.jogo.isNivel());
 	}
 	@Test
 	public void escolherNivelIgualDuasVezes() {
 		this.jogo.setNivel(true);
 		this.jogo.finaliza();
 		this.jogo.setNivel(true);
-		assertTrue("Esperava que jogador utilizasse o nível difícil.",
-				this.jogo.isNivel());
+		assertTrue("Esperava que jogador utilizasse o nível difícil.",this.jogo.isNivel());
 	}
 	@Test
-	public void verificaPontuacaoAposFinalizaJogo() {
+	public void verificaPontuacaoAposFinalizarJogo() {
 		this.criarQuestaoFacilEndEscolheQuestaoFacil();
 		this.jogo.finaliza();
 		assertEquals(0, this.jogo.getPonto());
 		this.jogo.setNivel(false);
-		assertFalse("Esperava que jogador utilizasse o nível difícil.",
-				this.jogo.isNivel());
+		assertFalse("Esperava que jogador utilizasse o nível difícil.", this.jogo.isNivel());
 	}
 	@Test(expected = ExcecaoDesafioMatematico.class)
-	public void verificaListQuestaoAposFinalizaJogo() {
+	public void verificaListQuestaoAposFinalizarJogo() {
 		this.criarQuestaoFacilEndEscolheQuestaoFacil();
 		this.jogo.finaliza();
 		this.jogo.getListQuestao();
 	}
 	@Test
-	public void finalizaJogoSemCriarQuestoes() {
+	public void finalizarJogoSemCriarQuestoes() {
 		this.jogo.setNivel(true);
 		this.jogo.finaliza();
 	}
 	@Test(expected = ExcecaoDesafioMatematico.class)
-	public void escolherNivelDoasVezesSemFinaliza() {
+	public void escolherNivelDuasVezesSemFinalizar() {
 		this.jogo.setNivel(true);
 		this.jogo.setNivel(false);
 	}
 	@Test
 	public void gerarQuestaoFacil() {
-		this.jogo.setNivel(true);
-		this.jogo.criarQuestoes();
+		this.criarQuestaoFacilEndEscolheQuestaoFacil();
 		Questao q = this.jogo.escolheQuestao();
 		assertTrue("Esperava que a questão seja fácil.", q.getNivelQuestao());
 	}
@@ -181,71 +173,62 @@ public class FacadeTest {
 		this.jogo.escolheQuestao();
 	}
 	@Test
-	public void virificaQuestaoCorreta() {
-		this.jogo.setNivel(true);
-		this.jogo.criarQuestoes();
+	public void verificaQuestaoCorreta() {
+		this.criarQuestaoFacilEndEscolheQuestaoFacil();
 		Questao q = this.jogo.escolheQuestao();
 		assertTrue(q.verificaResposta(q.getResposta()));
 		this.jogo.verificaResposta(q.getResposta());
-		assertTrue("Esperava que a pontuação fosse 1.",
-				this.jogo.getPonto() == 1);
+		assertTrue("Esperava que a pontuação fosse 1.", this.jogo.getPonto() == 1);
 	}
 	@Test
-	public void virificaQuestaoCorretaEndPorsentamAcertos() {
+	public void verificaQuestaoCorretaEndPorcentamAcertos() {
 		this.jogo.setNivel(true);
 		this.jogo.criarQuestoes();
 		Questao q = this.jogo.escolheQuestao();
 		this.jogo.verificaResposta(q.getResposta());
-		assertTrue("Esperava se que a porsentagem de acertos fosse diferente de 0", this.jogo.getPorcentagemAcertos() != 0);
+		assertTrue("Esperava-se que a porsentagem de acertos fosse diferente de .0", this.jogo.getPorcentagemAcertos() != 0);
 	}
 	@Test
-	public void virificaQuestaoIncorretaEndPorsentamAcertos() {
+	public void verificaQuestaoIncorretaEndPorcentamAcertos() {
 		this.verificaQuestaoIncorreta();
-		assertTrue("Esperava se que a porsentagem de acertos fosse igual a 0", this.jogo.getPorcentagemAcertos() == 0);
+		assertTrue("Esperava-se que a porcentagem de acertos fosse igual a 0.", this.jogo.getPorcentagemAcertos() == 0);
 	}
 	@Test
 	public void verificaQuestaoIncorreta(){
 		this.criarQuestaoFacilEndEscolheQuestaoFacil();
 		Questao q = this.jogo.escolheQuestao();
-		assertFalse(q.verificaResposta("resposta errada"));
-		this.jogo.verificaResposta("resposta errada");
-		assertTrue("Esperava que a pontuação fosse 0", this.jogo.getPonto() == 0);
+		assertFalse(q.verificaResposta("Resposta errada!"));
+		this.jogo.verificaResposta("Resposta errada!");
+		assertTrue("Esperava que a pontuação fosse 0.", this.jogo.getPonto() == 0);
 	}
 	@Test
 	public void recebeQuestaoNula() {
-		this.jogo.setNivel(true);
-		this.jogo.criarQuestoes();
+		this.criarQuestaoFacilEndEscolheQuestaoFacil();
 		this.jogo.escolheQuestao();
-		assertFalse("Esperava um valor falso.",
-				this.jogo.verificaResposta(null));
+		assertFalse("Esperava um valor falso.", this.jogo.verificaResposta(null));
 	}
 	@Test
 	public void respondeDuasVezesAhMesmaQuestao() {
-		this.jogo.setNivel(true);
-		this.jogo.criarQuestoes();
+		this.criarQuestaoFacilEndEscolheQuestaoFacil();
 		Questao q = this.jogo.escolheQuestao();
 		assertTrue(q.verificaResposta(q.getResposta()));
 		this.jogo.verificaResposta(q.getResposta());
 		this.jogo.verificaResposta(q.getResposta());
-		assertTrue("Esperava que a pontuação fosse 1.",
-				this.jogo.getPonto() == 1);
+		assertTrue("Esperava que a pontuação fosse 1.", this.jogo.getPonto() == 1);
 	}
 	@Test(expected = ExcecaoDesafioMatematico.class)
 	public void questaoEscolhidaNaoSairDaLista() {
-		this.jogo.setNivel(true);
-		this.jogo.criarQuestoes();
+		this.criarQuestaoFacilEndEscolheQuestaoFacil();
 		Questao q = this.jogo.escolheQuestao();
 		for (Questao q1 : this.jogo.getListQuestao()) {
 			if (q1.equals(q)) {
-				throw new ExcecaoDesafioMatematico(
-						"Questão não deveria ter sido removido.");
+				throw new ExcecaoDesafioMatematico("Questão não deveria ter sido removido.");
 			}
 		}
 	}
 	@Test
 	public void questaoRespondidaSairDaLista() {
-		this.jogo.setNivel(true);
-		this.jogo.criarQuestoes();
+		this.criarQuestaoFacilEndEscolheQuestaoFacil();
 		Questao q = this.jogo.escolheQuestao();
 		this.jogo.verificaResposta(q.getResposta());
 		for (Questao q1 : this.jogo.getListQuestao()) {
