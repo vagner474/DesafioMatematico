@@ -204,7 +204,8 @@ public class FacadeTest {
 	}
 	@Test
 	public void recebeQuestaoNula() {
-		this.criarQuestaoFacilEndEscolheQuestaoFacil();
+		this.jogo.setNivel(true);
+		this.jogo.criarQuestoes();
 		this.jogo.escolheQuestao();
 		assertFalse("Esperava um valor falso.", this.jogo.verificaResposta(null));
 	}
