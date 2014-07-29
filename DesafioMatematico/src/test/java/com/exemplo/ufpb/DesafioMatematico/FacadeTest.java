@@ -232,7 +232,8 @@ public class FacadeTest {
 	}
 	@Test
 	public void questaoRespondidaSairDaLista() {
-		this.criarQuestaoFacilEndEscolheQuestaoFacil();
+		this.jogo.setNivel(true);
+		this.jogo.criarQuestoes();
 		Questao q = this.jogo.escolheQuestao();
 		this.jogo.verificaResposta(q.getResposta());
 		for (Questao q1 : this.jogo.getListQuestao()) {
