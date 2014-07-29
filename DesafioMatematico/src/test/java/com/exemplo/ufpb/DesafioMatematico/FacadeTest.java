@@ -211,7 +211,8 @@ public class FacadeTest {
 	}
 	@Test
 	public void respondeDuasVezesAhMesmaQuestao() {
-		this.criarQuestaoFacilEndEscolheQuestaoFacil();
+		this.jogo.setNivel(true);
+		this.jogo.criarQuestoes();
 		Questao q = this.jogo.escolheQuestao();
 		assertTrue(q.verificaResposta(q.getResposta()));
 		this.jogo.verificaResposta(q.getResposta());
