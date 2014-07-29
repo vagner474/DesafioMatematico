@@ -221,7 +221,8 @@ public class FacadeTest {
 	}
 	@Test(expected = ExcecaoDesafioMatematico.class)
 	public void questaoEscolhidaNaoSairDaLista() {
-		this.criarQuestaoFacilEndEscolheQuestaoFacil();
+		this.jogo.setNivel(true);
+		this.jogo.criarQuestoes();
 		Questao q = this.jogo.escolheQuestao();
 		for (Questao q1 : this.jogo.getListQuestao()) {
 			if (q1.equals(q)) {
