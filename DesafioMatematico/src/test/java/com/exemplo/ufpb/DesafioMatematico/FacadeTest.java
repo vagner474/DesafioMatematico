@@ -96,14 +96,14 @@ public class FacadeTest {
 	@Test
 	public void criarQuestaoFacilEndEscolheQuestaoFacil(){
 		this.jogo.setNivel(true);
-		this.jogo.criarQuestoes();
+		this.jogo.criarQuestoes();//retirar depois 
 		assertTrue("Esperava que a questão utilizasse o nível fácil.", this.jogo.escolheQuestao().getNivelQuestao());
 	@Test
 	public void criarQuestaoDificilEndEscolheQuestaoDificil(){
 		this.jogo.setNivel(false);
 		this.jogo.criarQuestoes();
 		assertFalse("Esperava que a questão utilizasse nivel dificil", this.jogo.escolheQuestao().getNivelQuestao());
-		}
+		}//retirar depois 
 	}
 	@Test(expected = ExcecaoDesafioMatematico.class)
 	public void escolherQuestaoSemNivel() {
@@ -169,7 +169,8 @@ public class FacadeTest {
 	}
 	@Test
 	public void gerarQuestaoFacil() {
-		this.criarQuestaoFacilEndEscolheQuestaoFacil();
+		this.jogo.setNivel(true);
+		this.jogo.criarQuestoes();
 		Questao q = this.jogo.escolheQuestao();
 		assertTrue("Esperava que a questão seja fácil.", q.getNivelQuestao());
 	}
