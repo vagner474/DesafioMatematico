@@ -195,7 +195,7 @@ public class FacadeTest {
 		Questao q = this.jogo.escolheQuestao();
 		this.jogo.verificaResposta(q.getResposta());
 		assertTrue("Esperava-se que a porsentagem de acertos fosse diferente de .0", this.jogo.getPorcentagemAcertos() != 0);
-	}
+	}//retirar depois
 	@Test
 	public void verificaQuestaoIncorretaEndPorcentamAcertos() {
 		this.verificaQuestaoIncorreta();
@@ -347,7 +347,7 @@ public class FacadeTest {
 		this.facade.retomaJogo();
 	}
 	@Test(expected = ExcecaoDesafioMatematico.class)
-	public void retomaJogoSemSalva() {
+	public void retomaJogoSemSalvar() {
 		this.facade.retomaJogo();
 	}
 	@Test
