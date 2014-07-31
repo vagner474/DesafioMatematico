@@ -88,6 +88,12 @@ public class FacadeTest {
 		this.jogo.criarQuestoes();
 	}
 	@Test
+	public void escolherQeustaoNivelDiferente(){
+		this.jogo.setNivel(true);
+		this.jogo.criarQuestoes();
+		assertTrue("Esperava que a questão utilizasse o nível fácil.", this.jogo.escolheQuestao().getNivelQuestao() );
+	}
+	@Test
 	public void criarQuestaoFacilEndEscolheQuestaoFacil(){
 		this.jogo.setNivel(true);
 		this.jogo.criarQuestoes();
