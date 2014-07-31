@@ -12,14 +12,14 @@ public class FacadeTest {
 		this.jogo = this.facade.getJogo();
 	}
 	@After
-	public void finalizar() {
+	public void terminar() {
 		File file = new File("desafioMatematico.txt");
 		if (file.exists()) {
 			file.delete();
 		}
 	}
 	@Test
-	public void criarJogoAcabado() {
+	public void criarJogo() {
 		assertFalse("O jogo iniciou acabado.", this.jogo.isAcabou());
 	}
 	@Test
