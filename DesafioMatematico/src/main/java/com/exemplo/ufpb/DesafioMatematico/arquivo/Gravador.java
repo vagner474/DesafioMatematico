@@ -17,9 +17,9 @@ public class Gravador {
 			object = new ObjectInputStream(new FileInputStream("desafioMatematico.txt"));
 			return (Jogo) object.readObject();
 		} catch (FileNotFoundException e) {
-			throw new IOException("Arquivo não encontrado!");
+			throw new IOException("Arquivos não encontrado.");
 		}catch (ClassNotFoundException e) {
-			throw new IOException("Classe dos objetos não foram encontrados!",e);
+			throw new IOException("Classe dos objetos não foram encontrados.",e);
 		}finally{
 			if(object != null){
 				object.close();
@@ -32,7 +32,7 @@ public class Gravador {
 			out = new ObjectOutputStream(new FileOutputStream("desafioMatematico.txt"));
 			out.writeObject(jogo);
 		}catch(FileNotFoundException e){
-			throw new IOException("Arquivo não encontrado!");
+			throw new IOException("Arquivo não encontrado.");
 		}catch(IOException e){
 			throw e;
 		}finally{
