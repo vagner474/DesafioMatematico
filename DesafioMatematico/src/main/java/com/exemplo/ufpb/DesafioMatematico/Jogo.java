@@ -40,7 +40,7 @@ public class Jogo implements Serializable {
 			this.finalizado = false;
 			this.finalizouNivel = false;
 		} else {
-			throw new ExcecaoDesafioMatematico("Deveria finaliza o jogo!");
+			throw new ExcecaoDesafioMatematico("Deveria finalizar o jogo!");
 		}
 	}
 
@@ -59,14 +59,14 @@ public class Jogo implements Serializable {
 			this.ques = null;
 			this.esvaziaList();
 		} else {
-			throw new ExcecaoDesafioMatematico("Deveria inicializa o jogo!");
+			throw new ExcecaoDesafioMatematico("Deveria inicializar o jogo!");
 		}
 	}
 
 	public void setFinaliza() {
 		this.finalizado = true;
 	}
-
+	
 	private void esvaziaList() {
 		this.lista = new ArrayList<Questao>();
 	}
@@ -81,10 +81,10 @@ public class Jogo implements Serializable {
 			if (this.respostaCorreta) {
 				this.setPonto();
 				this.respostaCorreta = false;
-				this.listQuestaoFinalizada += this.ques.getRespostaCompleta()
-						+ "\n";
+				this.listQuestaoFinalizada += this.ques.getRespostaCompleta() + "\n";
 				this.lista.remove(this.ques);
 				this.ques = null;
+				this.porcentagemAcertos = (this.ponto/this.quantQuestao) * 100;
 				if (this.lista.size() == 0) {
 					this.finaliza();
 				}
@@ -102,15 +102,14 @@ public class Jogo implements Serializable {
 		if (this.finalizouNivel) {
 			return this.listQuestaoFinalizada;
 		}
-		throw new ExcecaoDesafioMatematico("Espera se que finalize o nivel");
+		throw new ExcecaoDesafioMatematico("Espera-se que finalizasse o nível.");
 	}
 
 	public void setPonto() throws ExcecaoDesafioMatematico {
 		if (this.escolheuNivel && this.criarQuestao && this.escolherQuestao && this.respostaCorreta) {
 			this.ponto++;
 		} else {
-			throw new ExcecaoDesafioMatematico(
-					"Deveria escolher o nivel do jogo primeiro");
+			throw new ExcecaoDesafioMatematico("Primeiramente, deveria escolher o nível do jogo.");
 		}
 	}
 
@@ -121,11 +120,11 @@ public class Jogo implements Serializable {
 	public String getNome() {
 		return this.nome;
 	}
-
+	
 	public int getQuantQuestao(){
 		return (int)this.quantQuestao;
 	}
-	
+
 	public Questao escolheQuestao() throws ExcecaoDesafioMatematico {
 		if (this.escolheuNivel && this.criarQuestao) {
 			int pos = (int) ((this.lista.size() - 1) * Math.random());
@@ -133,8 +132,7 @@ public class Jogo implements Serializable {
 			this.escolherQuestao = true;
 			return this.ques;
 		} else {
-			throw new ExcecaoDesafioMatematico(
-					"Deveria escolher o nivel do jogo!");
+			throw new ExcecaoDesafioMatematico("Deveria escolher o nível do jogo!");
 		}
 	}
 
@@ -146,9 +144,9 @@ public class Jogo implements Serializable {
 				this.addQuestaoDificil();
 			}
 			this.criarQuestao = true;
+			this.quantQuestao = this.lista.size();
 		} else {
-			throw new ExcecaoDesafioMatematico(
-					"Deveria escolher o nivel do jogo!");
+			throw new ExcecaoDesafioMatematico("Deveria escolher o nível do jogo!");
 		}
 	}
 
@@ -163,9 +161,9 @@ public class Jogo implements Serializable {
 	}
 
 	private void addQuestaoDificil() {
-		Questao q1 = new Questao(true, "x + 2 = 3", "1", "1 + 2 = 3");
-		Questao q2 = new Questao(true, "2 + 1 x 2 = ?", "4", "2 + 1 x 2 = 4");
-		Questao q3 = new Questao(true, "2x + 6 = 4", "-1", "2 x (-1) + 6 = 4");
+		Questao q1 = new Questao(false, "x + 2 = 3", "1", "1 + 2 = 3");
+		Questao q2 = new Questao(false, "2 + 1 x 2 = ?", "4", "2 + 1 x 2 = 4");
+		Questao q3 = new Questao(false, "2x + 6 = 4", "-1", "2 x (-1) + 6 = 4");
 
 		this.lista.add(q1);
 		this.lista.add(q2);
@@ -180,7 +178,7 @@ public class Jogo implements Serializable {
 		if (this.escolheuNivel && this.criarQuestao) {
 			return this.lista;
 		}
-		throw new ExcecaoDesafioMatematico("Quest�es n�o criadas!");
+		throw new ExcecaoDesafioMatematico("Questões não criadas!");
 	}
 
 	public boolean isCriarQuestao() {
@@ -197,5 +195,9 @@ public class Jogo implements Serializable {
 
 	public boolean isFinalizouNivel() {
 		return this.finalizouNivel;
+	}
+
+	public void setEscolheuNivel() {
+		this.escolheuNivel = true;
 	}
 }
