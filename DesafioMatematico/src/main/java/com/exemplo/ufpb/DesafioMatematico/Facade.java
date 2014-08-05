@@ -1,4 +1,4 @@
-﻿package com.exemplo.ufpb.DesafioMatematico;
+package com.exemplo.ufpb.DesafioMatematico;
 
 import java.io.IOException;
 
@@ -23,7 +23,7 @@ public class Facade {
 		try {
 			this.jogo = this.gravador.lerArquivo();
 		} catch (IOException e) {
-			throw new ExcecaoDesafioMatematico("Arquivo não existente!");
+			throw new ExcecaoDesafioMatematico("Arquivo não existente.");
 		}
 	}
 
@@ -33,10 +33,10 @@ public class Facade {
 				this.gravador.salvaArquivo(this.jogo);
 				this.jogo.setFinaliza();
 			} catch (IOException e) {
-				throw new ExcecaoDesafioMatematico("Jogo não foi salvo!");
+				throw new ExcecaoDesafioMatematico("Jogo não foi salvo.");
 			}
 		} else {
-			throw new ExcecaoDesafioMatematico("Jogo não foi inicializado!");
+			throw new ExcecaoDesafioMatematico("Jogo não foi inicializado.");
 		}
 	}
 
